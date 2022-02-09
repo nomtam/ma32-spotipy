@@ -31,3 +31,11 @@ class FileIsNotCorrectError(Exception):
 
     def __str__(self):
         return "FileIsNotCorrectError : this path excepted to be" + str(self.extension) + " but got:" + str(self.path)
+
+
+class UsernameIsNotExistError(Exception):
+    def __init__(self, username=None):
+        self.username = username
+
+    def __str__(self):
+        return "UsernameIsNotExistError : user name is not exist. ->" + str(self.username)
