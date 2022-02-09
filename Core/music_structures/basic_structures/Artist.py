@@ -1,5 +1,5 @@
-from Core.music_structures.Album import Album
-from Core.music_structures.Track import Track
+from Core.music_structures.basic_structures.Album import Album
+from Core.music_structures.basic_structures.Track import Track
 
 
 class Artist:
@@ -9,7 +9,7 @@ class Artist:
         self.albums = list()  # the list of all tracks of this Album
 
     def add_album(self, album: Album):
-        self.tracks.append(album)
+        self.albums.append(album)
 
     def if_album_exists(self, album_id: str):
         for album in self.albums:
