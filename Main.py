@@ -1,6 +1,7 @@
 def main():
-    from Monitoring import add_info_to_log
-    add_info_to_log("working")
+    from Core.IO.Dir import read_all_json_files_from_directory
+    data = read_all_json_files_from_directory()
+    print(data)
 
 
 if __name__ == "__main__":
