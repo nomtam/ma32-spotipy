@@ -1,6 +1,7 @@
 def main():
     from Core.IO.Dir import read_all_json_files_from_directory
     from Core.music_structures.spotipy_data import SpotipyData
+    import Monitoring.logger as logger
     data = read_all_json_files_from_directory()
     spotipy_data = SpotipyData()
     spotipy_data.load_data(data)
