@@ -1,7 +1,8 @@
 import logging
-import configurator
+import Monitoring.configurator as config
+
 # this is the variable which we will use to log everything that we need
-logging.basicConfig(filename=configurator.config['PATH'], filemode='w',
+logging.basicConfig(filename=config.config_data['LOGGER']['PATH'], filemode='w',
                     format='%(process)d - %(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
