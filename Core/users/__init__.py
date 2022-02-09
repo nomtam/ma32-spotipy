@@ -20,8 +20,10 @@ def signup(user: str, password: str, data: dict, user_permission: str):
     if user not in data.keys():
         if user_permission.lower() in config.config_data['USERS_DATA']['PERMISSION_LEVELS']:
             data[user] = [password, user_permission]
+            return True
         else:
             return "user permission is incorrect. can be one of the three" + config.config_data['USERS_DATA'][
                 'PERMISSION_LEVELS']
     else:
+        logger.add_info("username already in use")
         return "username already in use"
