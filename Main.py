@@ -4,9 +4,8 @@ def main():
     from Core.music_structures.spotipy_data import SpotipyData
     from Core.IO.File import json_file_writer
     import Monitoring.configurator as config
-    from Core.users import UsersData
+    from Core.users.data import UsersData
     data = UsersData()
-    data.get_users_data()
     print(data.signup("rds", "123", "free"))
     data.save_data()
 
