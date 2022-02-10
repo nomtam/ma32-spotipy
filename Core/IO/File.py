@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 import Monitoring.logger as logger
 from Monitoring.exceptions import PathIsNotFileError
 from Monitoring.exceptions import FileIsNotCorrectError
@@ -29,3 +30,11 @@ def json_file_writer(file_path: str, data: dict):
             logger.add_error(FileIsNotCorrectError("json", file_path))
     else:
         logger.add_error(PathIsNotFileError(file_path))
+
+
+def if_file_exists(file_path: str):
+    return os.path.exists(file_path)
+
+
+def create_new_file(file_path):
+    open(file_path, 'w')

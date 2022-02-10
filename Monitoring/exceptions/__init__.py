@@ -39,3 +39,11 @@ class UsernameIsNotExistError(Exception):
 
     def __str__(self):
         return "UsernameIsNotExistError : user name is not exist. ->" + str(self.username)
+
+
+class FileDoesNotExistError(Exception):
+    def __init__(self, path=None):
+        self.path = path
+
+    def __str__(self):
+        return "FileDoesNotExistError : file does not exist. ->" + str(self.path)
