@@ -32,6 +32,7 @@ class UsersData:
             if user not in self.data.keys():
                 if user_permission.lower() in config.config_data['USERS_DATA']['PERMISSION_LEVELS']:
                     self.data[user] = [password, user_permission]
+                    open(config.config_data["USERS_DATA"]['PLAYLIST_DIR'] + "\\" + user + ".json", "w")
                     return True
                 else:
                     return "user permission level is incorrect. can be one of the three" + \

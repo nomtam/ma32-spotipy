@@ -4,7 +4,7 @@ from Monitoring.exceptions import PathIsNotFileError
 from Monitoring.exceptions import FileIsNotCorrectError
 
 
-def read_data_from_json_file(file_path):
+def read_data_from_json_file(file_path: str):
     if os.path.isfile(file_path):
         if file_path.endswith(".json"):
             try:

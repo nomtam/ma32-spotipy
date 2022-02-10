@@ -6,7 +6,7 @@ def main():
     import Monitoring.configurator as config
     from Core.users.data import UsersData
     data = UsersData()
-    print(data.signup("rds", "123", "free"))
+    print(data.signup("rdg", "123", "free"))
     data.save_data()
 
 
