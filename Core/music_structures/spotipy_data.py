@@ -4,6 +4,7 @@ from Core.music_structures.basic_structures.Track import Track
 import Monitoring.logger as logger
 from Monitoring.exceptions import KeyWordDoesNotExistError
 
+NOT_FOUND = -1
 
 class SpotipyData:
     __instance = None
@@ -17,7 +18,7 @@ class SpotipyData:
             for track in data:
                 for artist in track['track']['artists']:
                     try:
-                        if not self.if_artist_exist(artist['id']):
+                        if self.if_artist_exist(artist['id']) is NOT_FOUND:
                             # new artist means everything is new
                             new_artist = Artist(artist['id'], artist['name'])
                             new_artist.add_album(Album(track['track']['album']['id'], track['track']['album']['name']))
@@ -45,7 +46,7 @@ class SpotipyData:
             for index, artist in enumerate(self.artists):
                 if artist.id == artist_id:
                     return index
-            return False
+            return NOT_FOUND
 
         def get_data(self):
             return self.artists

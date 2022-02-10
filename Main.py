@@ -4,10 +4,11 @@ def main():
     from Core.music_structures.spotipy_data import SpotipyData
     from Core.IO.File import json_file_writer
     import Monitoring.configurator as config
-    from Core.users.data import UsersData
-    data = UsersData()
-    print(data.signup("rdg", "123", "free"))
-    data.save_data()
+    data = SpotipyData()
+    data.load_data(read_all_json_files_from_directory(config.config_data['SONGS_DATA']['DATA_DIR']))
+
+
+
 
 
 if __name__ == "__main__":
