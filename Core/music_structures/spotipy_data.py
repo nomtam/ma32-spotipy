@@ -6,6 +6,7 @@ from Monitoring.exceptions import KeyWordDoesNotExistError
 
 NOT_FOUND = -1
 
+
 class SpotipyData:
     __instance = None
 
