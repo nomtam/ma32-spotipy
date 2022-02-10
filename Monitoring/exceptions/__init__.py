@@ -47,3 +47,11 @@ class FileDoesNotExistError(Exception):
 
     def __str__(self):
         return "FileDoesNotExistError : file does not exist. ->" + str(self.path)
+
+
+class ArtistIdDoesNotExistError(Exception):
+    def __init__(self, id=None):
+        self.id = id
+
+    def __str__(self):
+        return "ArtistIdDoesNotExistError : artist id is not exist. ->" + str(self.id)
