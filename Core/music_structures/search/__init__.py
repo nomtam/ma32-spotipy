@@ -6,9 +6,9 @@ def get_all_artists():
 def get_all_album_name_by_artist_id(artist_id: str):
     from Core.music_structures.spotipy_data import SpotipyData
     for artist in SpotipyData().artists:
-        if artist.id is artist_id:
+        if artist.id == artist_id:
             album_names = []
-            for album in artist:
+            for album in artist.albums:
                 album_names.append(album.name)
             return album_names
     return "artist id does not exist"
