@@ -5,11 +5,14 @@ class Album:
     def __init__(self, id: str, name: str):
         self.id = id
         self.name = name
+        # CR: same about dict
         self.tracks = list()  # the list of all tracks of this Album
 
     def add_song_to_album(self, track: Track):
         self.tracks.append(track)
 
+    # CR: does
+    # CR: same about dict
     def is_track_exist(self, track_id: str):
         for track in self.tracks:
             if track.id == track_id:

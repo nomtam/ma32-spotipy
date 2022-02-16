@@ -1,3 +1,4 @@
+# CR: why is this inside the __init__?
 class PathIsNotDirectoryError(Exception):
     def __init__(self, message=None):
         self.message = message

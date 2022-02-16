@@ -1,22 +1,31 @@
+# CR: bad file name. typo
 from Core.music_structures.basic_structures.Track import Track
 from Core.users.data import UsersData
 from Core.IO.File import read_data_from_json_file, if_file_exists, create_new_file, json_file_writer
 import Monitoring.configurator as config
 import Monitoring.logger as logger
 from Monitoring.exceptions import FileDoesNotExistError
-
+# CR: config
+# CR: what does it matter what is the lowest? the logic should be "if free -> limit"
 LOWEST_PERMISSION = "free"
 
+# CR: In general, the best practice is to raise an error if something isn't right or not return nothing
+#  if everything is ok (or return 0)
 
+
+# CR: never used?
 def add_new_playlist(playlist_name: str, username: str):
     user_permission = UsersData().get_user_permission_level(username)
     user_data = get_user_playlist(username)
+    # CR: better to log after success/error
     logger.add_info(f"adding playlist: {playlist_name} for user {username}")
     if __user_permitted_to_add_playlist(user_permission, user_data):
         user_data[playlist_name] = []
         logger.add_info(f"playlist added: {playlist_name} for user {username}")
+        # CR: return must be binary. Returning a string isn't good
         return "playlist added!"
     else:
+        # CR: same for print
         return "you are not allowed to add playlist!"
 
 
@@ -32,16 +41,24 @@ def add_track_to_playlist(username: str, playlist_name: str, track: Track):
 
 
 def save_data(username: str, user_data):
+    # CR: config
+    # CR: coupled to json
     file_path = config.config_data["USERS_DATA"]['PLAYLIST_DIR'] + "\\" + username + ".json"
+    # CR: OCP. coupled to json
     json_file_writer(file_path, user_data)
 
 
 def get_user_playlist(username):
+    # CR: config
+    # CR: coupled to json
     file_path = config.config_data["USERS_DATA"]['PLAYLIST_DIR'] + "\\" + username + ".json"
+    # CR: why not keep using { }
+    # CR: typo
     logger.add_info("reciving playlist data from file: %s" % file_path)
     if if_file_exists(file_path):
         user_data = read_data_from_json_file(file_path)
     else:
+        # CR: why is this an error?
         logger.add_error(FileDoesNotExistError(file_path))
         user_data = {}
         create_new_file(file_path)
@@ -50,10 +67,14 @@ def get_user_playlist(username):
 
 
 def __user_permitted_to_add_playlist(user_permission: str, user_data: dict):
+    # CR: config the strings
+    # CR: put themax value in a var
+    # CR: change to a few lines and ifs instead of making one complex line
     return not ((user_permission is LOWEST_PERMISSION) and (len(user_data) == config.config_data['USERS_DATA'][
         'MAX_FREE_PLAYLISTS']))
 
 
 def __user_permitted_to_add_song_to_playlist(user_permission: str, user_data: dict, playlist_name: str):
+    # CR: same as add playlist comments above
     return not ((user_permission is LOWEST_PERMISSION) and (
             len(user_data[playlist_name]) == config.config_data['USERS_DATA']['MAX_FREE_SONGS']))
